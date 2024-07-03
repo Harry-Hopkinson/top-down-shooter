@@ -8,7 +8,11 @@ private:
     const int ScreenWidth = 1600;
     const int ScreenHeight = 960;
     const int MaxInputChars = 9;
+
     int LetterCount = 0;
+    int FramesCounter = 0;
+
+    Rectangle TextBox = { static_cast<float>(ScreenWidth / 2.0f - 100), static_cast<float>(ScreenHeight / 2.0f), 225, 50 };
 
     struct Player
     {
@@ -28,10 +32,18 @@ private:
     Player player;
 
 public:
-    int FramesCounter = 0;
     enum GameScreen CurrentScreen = GameScreen::TitleScreen;
+    Texture2D PlayerTexture;
+    bool MouseOnText;
 
-    Rectangle TextBox = { static_cast<float>(ScreenWidth / 2.0f - 100), static_cast<float>(ScreenHeight / 2.0f), 225, 50 };
+    Game()
+    {
+        InitWindow(ScreenWidth, ScreenHeight, "2D Platformer");
+        SetTargetFPS(120);
+
+        PlayerTexture = LoadTexture("../assets/IDLE.png");
+        MouseOnText = false;
+    }
 
     void Drawing(bool MouseOnText)
     {
@@ -75,6 +87,7 @@ public:
             }
             case GamePlayScreen:
             {
+                DrawTexture(PlayerTexture, 15, 40, WHITE);
                 DrawText("Game Screen", 20, 20, 40, DARKGRAY);
                 break;
             }
@@ -92,11 +105,6 @@ public:
 
     void Run()
     {
-        InitWindow(ScreenWidth, ScreenHeight, "2D Platformer");
-        SetTargetFPS(120);
-
-        bool MouseOnText = false;
-
         while (!WindowShouldClose())
         {
             switch (CurrentScreen)
@@ -159,8 +167,8 @@ public:
             Drawing(MouseOnText);
         }
 
+        UnloadTexture(PlayerTexture);
         CloseWindow();
-
     }
 };
 
