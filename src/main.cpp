@@ -127,7 +127,7 @@ public:
                             key = GetCharPressed();
                         }
 
-                        if (IsKeyPressed(KEY_BACKSPACE) && LetterCount > 0)
+                        if ((IsKeyPressed(KEY_BACKSPACE) || IsKeyPressedRepeat(KEY_BACKSPACE)) && LetterCount > 0)
                         {
                             LetterCount--;
                             player.Name.pop_back();
