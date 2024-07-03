@@ -32,7 +32,10 @@ private:
     Player player;
 
     enum GameScreen CurrentScreen = GameScreen::TitleScreen;
+
     Texture2D PlayerTexture;
+    Texture2D SettingsTexture;
+
     bool MouseOnText;
 
 public:
@@ -42,12 +45,14 @@ public:
         SetTargetFPS(120);
 
         PlayerTexture = LoadTexture("../assets/IDLE.png");
+        SettingsTexture = LoadTexture("../asets/COG.png");
         MouseOnText = false;
     }
 
     ~Game()
     {
         UnloadTexture(PlayerTexture);
+        UnloadTexture(SettingsTexture);
         CloseWindow();
     }
 
