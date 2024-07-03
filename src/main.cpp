@@ -35,6 +35,7 @@ private:
 
     Texture2D PlayerTexture;
     Texture2D SettingsTexture;
+    Rectangle SettingsArea = { static_cast<float>(ScreenWidth - SettingsTexture.width - 10), static_cast<float>(ScreenHeight - SettingsTexture.height - 10), static_cast<float>(SettingsTexture.width), static_cast<float>(SettingsTexture.height) };
 
     bool MouseOnText;
 
@@ -45,7 +46,7 @@ public:
         SetTargetFPS(120);
 
         PlayerTexture = LoadTexture("../assets/IDLE.png");
-        SettingsTexture = LoadTexture("../asets/COG.png");
+        SettingsTexture = LoadTexture("../assets/COG.png");
         MouseOnText = false;
     }
 
@@ -70,6 +71,7 @@ public:
                 DrawText("2D Platformer", (GetScreenWidth() / 2) - (PlatformerText / 2 - 20), GetScreenHeight() / 2 - 75, 40, BLACK);
                 DrawText("Press Enter to Start", (GetScreenWidth() / 2) - (EnterToStartText / 2), GetScreenHeight() / 2, 40, BLACK);
                 DrawRectangle(760, 600, 100, 100, RED);
+                DrawTexture(SettingsTexture, ScreenWidth - SettingsTexture.width - 10, ScreenHeight - SettingsTexture.height - 10, WHITE);
                 break;
             }
             case EnterNameScreen:
@@ -124,6 +126,11 @@ public:
                     if (IsKeyPressed(KEY_ENTER))
                     {
                         CurrentScreen = EnterNameScreen;
+                    }
+
+                    if (CheckCollisionPointRec(GetMousePosition(), SettingsArea))
+                    {
+                        CurrentScreen = SettingsScreen;
                     }
                     break;
                 case EnterNameScreen:
