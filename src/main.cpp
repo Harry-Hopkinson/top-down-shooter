@@ -31,11 +31,11 @@ private:
 
     Player player;
 
-public:
     enum GameScreen CurrentScreen = GameScreen::TitleScreen;
     Texture2D PlayerTexture;
     bool MouseOnText;
 
+public:
     Game()
     {
         InitWindow(ScreenWidth, ScreenHeight, "2D Platformer");
@@ -45,7 +45,13 @@ public:
         MouseOnText = false;
     }
 
-    void Drawing(bool MouseOnText)
+    ~Game()
+    {
+        UnloadTexture(PlayerTexture);
+        CloseWindow();
+    }
+
+    void Drawing()
     {
         BeginDrawing();
         ClearBackground(WHITE);
@@ -164,11 +170,8 @@ public:
                     break;
             }
 
-            Drawing(MouseOnText);
+            Drawing();
         }
-
-        UnloadTexture(PlayerTexture);
-        CloseWindow();
     }
 };
 
