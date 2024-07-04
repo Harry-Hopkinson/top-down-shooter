@@ -5,8 +5,8 @@
 class Game
 {
 private:
-    const int ScreenWidth = 1600;
-    const int ScreenHeight = 960;
+    const int ScreenWidth = 1200;
+    const int ScreenHeight = 800;
     const int MaxInputChars = 9;
 
     int LetterCount = 0;
@@ -35,7 +35,7 @@ private:
 
     Texture2D PlayerTexture;
     Texture2D SettingsTexture;
-    Rectangle SettingsArea = { static_cast<float>(ScreenWidth - SettingsTexture.width - 10), static_cast<float>(ScreenHeight - SettingsTexture.height - 10), static_cast<float>(SettingsTexture.width), static_cast<float>(SettingsTexture.height) };
+    Rectangle SettingsArea;
 
     bool MouseOnText;
 
@@ -47,6 +47,7 @@ public:
 
         PlayerTexture = LoadTexture("../assets/IDLE.png");
         SettingsTexture = LoadTexture("../assets/COG.png");
+        SettingsArea = { static_cast<float>(ScreenWidth - SettingsTexture.width - 10), static_cast<float>(ScreenHeight - SettingsTexture.height - 10), static_cast<float>(SettingsTexture.width), static_cast<float>(SettingsTexture.height) };
         MouseOnText = false;
     }
 
@@ -70,7 +71,6 @@ public:
                 int EnterToStartText = MeasureText("Press Enter to Start", 35);
                 DrawText("2D Platformer", (GetScreenWidth() / 2) - (PlatformerText / 2 - 20), GetScreenHeight() / 2 - 75, 40, BLACK);
                 DrawText("Press Enter to Start", (GetScreenWidth() / 2) - (EnterToStartText / 2), GetScreenHeight() / 2, 40, BLACK);
-                DrawRectangle(760, 600, 100, 100, RED);
                 DrawTexture(SettingsTexture, ScreenWidth - SettingsTexture.width - 10, ScreenHeight - SettingsTexture.height - 10, WHITE);
                 break;
             }
@@ -128,7 +128,7 @@ public:
                         CurrentScreen = EnterNameScreen;
                     }
 
-                    if (CheckCollisionPointRec(GetMousePosition(), SettingsArea))
+                    if (CheckCollisionPointRec(GetMousePosition(), SettingsArea) && IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
                     {
                         CurrentScreen = SettingsScreen;
                     }

@@ -1,0 +1,54 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-c",
+      "CMakeCXXCompilerId.cpp"
+    ],
+    "directory": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/3.29.6/CompilerIdCXX",
+    "file": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/3.29.6/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-arch",
+      "arm64",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk",
+      "-v",
+      "-c",
+      "-o",
+      "CMakeFiles/cmTC_23211.dir/CMakeCXXCompilerABI.cpp.o",
+      "/opt/homebrew/Cellar/cmake/3.29.6/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+    ],
+    "directory": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/CMakeScratch/TryCompile-jZm0CA",
+    "file": "/opt/homebrew/Cellar/cmake/3.29.6/share/cmake/Modules/CMakeCXXCompilerABI.cpp",
+    "output": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/CMakeScratch/TryCompile-jZm0CA/CMakeFiles/cmTC_23211.dir/CMakeCXXCompilerABI.cpp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-c",
+      "CMakeCCompilerId.c"
+    ],
+    "directory": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/3.29.6/CompilerIdC",
+    "file": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/3.29.6/CompilerIdC/CMakeCCompilerId.c"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-arch",
+      "arm64",
+      "-isysroot",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk",
+      "-v",
+      "-c",
+      "-o",
+      "CMakeFiles/cmTC_6c31c.dir/CMakeCCompilerABI.c.o",
+      "/opt/homebrew/Cellar/cmake/3.29.6/share/cmake/Modules/CMakeCCompilerABI.c"
+    ],
+    "directory": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/CMakeScratch/TryCompile-kRwnzR",
+    "file": "/opt/homebrew/Cellar/cmake/3.29.6/share/cmake/Modules/CMakeCCompilerABI.c",
+    "output": "/Users/harryhopkinson/Documents/Programming/top-down-shooter/build/CMakeFiles/CMakeScratch/TryCompile-kRwnzR/CMakeFiles/cmTC_6c31c.dir/CMakeCCompilerABI.c.o"
+  }
+]
