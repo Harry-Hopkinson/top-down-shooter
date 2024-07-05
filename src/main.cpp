@@ -12,7 +12,8 @@ private:
     int LetterCount = 0;
     int FramesCounter = 0;
 
-    Rectangle TextBox = { static_cast<float>(ScreenWidth / 2.0f - 100), static_cast<float>(ScreenHeight / 2.0f), 225, 50 };
+    Rectangle TextBox;
+    Rectangle SettingsArea;
 
     struct Player
     {
@@ -30,14 +31,12 @@ private:
     };
 
     Player player;
-
     enum GameScreen CurrentScreen = GameScreen::TitleScreen;
 
     Texture2D PlayerTexture;
     Texture2D SettingsTexture;
-    Rectangle SettingsArea;
 
-    bool MouseOnText;
+    bool MouseOnText = false;
 
 public:
     Game()
@@ -47,8 +46,12 @@ public:
 
         PlayerTexture = LoadTexture("../assets/IDLE.png");
         SettingsTexture = LoadTexture("../assets/COG.png");
-        MouseOnText = false;
 
+        TextBox = 
+        { 
+            static_cast<float>(ScreenWidth / 2.0f - 100), 
+            static_cast<float>(ScreenHeight / 2.0f), 225, 50 
+        };
 
         SettingsArea =
         {
