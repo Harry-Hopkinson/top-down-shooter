@@ -1,5 +1,7 @@
 #include "raylib.h"
 
+#include "Textures.hpp"
+
 #include <string>
 
 class Game
@@ -33,10 +35,9 @@ private:
     Player player;
     enum GameScreen CurrentScreen = GameScreen::TitleScreen;
 
-    Texture2D PlayerTexture;
-    Texture2D SettingsTexture;
-
     bool MouseOnText = false;
+
+    TexturesClass Textures;
 
 public:
     Game()
@@ -44,8 +45,7 @@ public:
         InitWindow(ScreenWidth, ScreenHeight, "2D Platformer");
         SetTargetFPS(120);
 
-        PlayerTexture = LoadTexture("../assets/IDLE.png");
-        SettingsTexture = LoadTexture("../assets/COG.png");
+        Textures.LoadTextures();
 
         TextBox = 
         { 
@@ -55,17 +55,16 @@ public:
 
         SettingsArea =
         {
-            static_cast<float>(ScreenWidth - SettingsTexture.width - 10), 
-            static_cast<float>(ScreenHeight - SettingsTexture.height - 10), 
-            static_cast<float>(SettingsTexture.width), 
-            static_cast<float>(SettingsTexture.height) 
+            static_cast<float>(ScreenWidth - Textures.SettingsTexture.width - 10), 
+            static_cast<float>(ScreenHeight - Textures.SettingsTexture.height - 10), 
+            static_cast<float>(Textures.SettingsTexture.width), 
+            static_cast<float>(Textures.SettingsTexture.height) 
         };
     }
 
     ~Game()
     {
-        UnloadTexture(PlayerTexture);
-        UnloadTexture(SettingsTexture);
+        Textures.UnloadTextures();
         CloseWindow();
     }
 
@@ -82,7 +81,7 @@ public:
                 int EnterToStartText = MeasureText("Press Enter to Start", 35);
                 DrawText("2D Platformer", (GetScreenWidth() / 2) - (PlatformerText / 2 - 20), GetScreenHeight() / 2 - 75, 40, BLACK);
                 DrawText("Press Enter to Start", (GetScreenWidth() / 2) - (EnterToStartText / 2), GetScreenHeight() / 2, 40, BLACK);
-                DrawTexture(SettingsTexture, ScreenWidth - SettingsTexture.width - 10, ScreenHeight - SettingsTexture.height - 10, WHITE);
+                DrawTexture(Textures.SettingsTexture, ScreenWidth - Textures.SettingsTexture.width - 10, ScreenHeight - Textures.SettingsTexture.height - 10, WHITE);
                 break;
             }
             case EnterNameScreen:
@@ -111,7 +110,7 @@ public:
             }
             case GamePlayScreen:
             {
-                DrawTexture(PlayerTexture, 15, 40, WHITE);
+                DrawTexture(Textures.PlayerTexture, 15, 40, WHITE);
                 DrawText("Game Screen", 20, 20, 40, DARKGRAY);
                 break;
             }
