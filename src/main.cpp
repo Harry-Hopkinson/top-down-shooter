@@ -47,8 +47,16 @@ public:
 
         PlayerTexture = LoadTexture("../assets/IDLE.png");
         SettingsTexture = LoadTexture("../assets/COG.png");
-        SettingsArea = { static_cast<float>(ScreenWidth - SettingsTexture.width - 10), static_cast<float>(ScreenHeight - SettingsTexture.height - 10), static_cast<float>(SettingsTexture.width), static_cast<float>(SettingsTexture.height) };
         MouseOnText = false;
+
+
+        SettingsArea =
+        {
+            static_cast<float>(ScreenWidth - SettingsTexture.width - 10), 
+            static_cast<float>(ScreenHeight - SettingsTexture.height - 10), 
+            static_cast<float>(SettingsTexture.width), 
+            static_cast<float>(SettingsTexture.height) 
+        };
     }
 
     ~Game()
