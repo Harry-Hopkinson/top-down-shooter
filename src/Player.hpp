@@ -1,18 +1,17 @@
 #pragma once
 
 #include "raylib.h"
-#include "Character.hpp"
+#include <string>
 
-class Player : public Character
+class PlayerClass
 {
 public:
-    Player();
-    ~Player();
-
+    std::string Name;
+    Vector2 Position;
+    float Speed;
+    Texture2D PlayerTexture;
+    PlayerClass();
     void Update();
     void Draw();
-
-    void LoadTextures();
-
-    Texture2D PlayerTexture;
+    void SetTexture(Texture2D texture);
 };

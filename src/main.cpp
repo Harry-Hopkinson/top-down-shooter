@@ -1,8 +1,5 @@
-#include "raylib.h"
-
+#include "Player.hpp"
 #include "Textures.hpp"
-
-#include <string>
 
 class Game
 {
@@ -17,12 +14,7 @@ private:
     Rectangle TextBox;
     Rectangle SettingsArea;
 
-    struct Player
-    {
-        std::string Name;
-        Vector2 Position;
-        float Speed;
-    };
+    PlayerClass Player;
 
     enum GameScreen
     {
@@ -32,7 +24,6 @@ private:
         SettingsScreen = 3
     };
 
-    Player player;
     enum GameScreen CurrentScreen = GameScreen::TitleScreen;
 
     bool MouseOnText = false;
@@ -60,6 +51,8 @@ public:
             static_cast<float>(Textures.SettingsTexture.width), 
             static_cast<float>(Textures.SettingsTexture.height) 
         };
+
+        Player.SetTexture(Textures.PlayerTexture);
     }
 
     ~Game()
@@ -96,21 +89,21 @@ public:
                 else
                     DrawRectangleLines((int)TextBox.x, (int)TextBox.y, (int)TextBox.width, (int)TextBox.height, DARKGRAY);
 
-                DrawText(player.Name.c_str(), (int)TextBox.x + 5, (int)TextBox.y + 8, 40, MAROON);
+                DrawText(Player.Name.c_str(), (int)TextBox.x + 5, (int)TextBox.y + 8, 40, MAROON);
                 DrawText(TextFormat("INPUT CHARS: %i/%i", LetterCount, MaxInputChars), 315, 250, 20, DARKGRAY);
 
                 if (MouseOnText)
                 {
                     if (LetterCount < MaxInputChars)
                     {
-                        if (((FramesCounter / 20) % 2) == 0) DrawText("_", (int)TextBox.x + 8 + MeasureText(player.Name.c_str(), 40), (int)TextBox.y + 12, 40, MAROON);
+                        if (((FramesCounter / 20) % 2) == 0) DrawText("_", (int)TextBox.x + 8 + MeasureText(Player.Name.c_str(), 40), (int)TextBox.y + 12, 40, MAROON);
                     }
                 }
                 break;
             }
             case GamePlayScreen:
             {
-                DrawTexture(Textures.PlayerTexture, 15, 40, WHITE);
+                Player.Draw();
                 DrawText("Game Screen", 20, 20, 40, DARKGRAY);
                 break;
             }
@@ -156,7 +149,7 @@ public:
                         {
                             if ((key >= 32) && (key <= 125) && (LetterCount < MaxInputChars))
                             {
-                                player.Name += (char)key;
+                                Player.Name += (char)key;
                                 LetterCount++;
                             }
 
@@ -166,7 +159,7 @@ public:
                         if ((IsKeyPressed(KEY_BACKSPACE) || IsKeyPressedRepeat(KEY_BACKSPACE)) && LetterCount > 0)
                         {
                             LetterCount--;
-                            player.Name.pop_back();
+                            Player.Name.pop_back();
                         }
                     }
                     else
@@ -185,6 +178,7 @@ public:
                     break;
                 case GamePlayScreen:
                     SetMouseCursor(MOUSE_CURSOR_CROSSHAIR);
+                    Player.Update();
                     break;
                 case SettingsScreen:
                     break;
