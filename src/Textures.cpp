@@ -2,7 +2,7 @@
 
 void TexturesClass::LoadTextures()
 {
-    PlayerTexture = LoadTexture("../assets/IDLE.png");
+    PlayerTexture = LoadTexture("../assets/Run.png");
     SettingsTexture = LoadTexture("../assets/COG.png");
 }
 

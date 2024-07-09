@@ -3,13 +3,18 @@
 #include "raylib.h"
 #include <string>
 
-class PlayerClass
+#include "Animations.hpp"
+
+class PlayerClass : AnimationsClass
 {
 public:
     std::string Name;
     Vector2 Position;
+    Vector2 ScaledPosition = { 0.0f, 0.0f };
     float Speed;
     Texture2D PlayerTexture;
+    Rectangle FrameRec;
+
     PlayerClass();
     void Update();
     void Draw();

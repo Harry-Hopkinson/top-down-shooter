@@ -34,7 +34,7 @@ public:
     Game()
     {
         InitWindow(ScreenWidth, ScreenHeight, "2D Platformer");
-        SetTargetFPS(120);
+        SetTargetFPS(60);
 
         Textures.LoadTextures();
 
