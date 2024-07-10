@@ -52,7 +52,7 @@ public:
             static_cast<float>(Textures.SettingsTexture.height) 
         };
 
-        Player.SetTexture(Textures.PlayerTexture);
+        Player.SetTexture(&Textures.PlayerIdleTexture);
     }
 
     ~Game()

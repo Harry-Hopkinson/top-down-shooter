@@ -18,5 +18,13 @@ public:
     PlayerClass();
     void Update();
     void Draw();
-    void SetTexture(Texture2D texture);
+    void SetTexture(const Texture2D* texture);
+
+    enum PlayerState
+    {
+	IDLE,
+	RUN
+    };
+private:
+    PlayerState State;
 };

@@ -8,6 +8,7 @@ public:
 	void LoadTextures();
 	void UnloadTextures();
 
-	Texture2D PlayerTexture;
+	Texture2D PlayerIdleTexture;
+	Texture2D PlayerRunTexture;
 	Texture2D SettingsTexture;
 };

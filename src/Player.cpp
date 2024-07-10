@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-#define MAX_FRAME_SPEED 15
+#define MAX_FRAME_SPEED 10 
 #define MIN_FRAME_SPEED  1
 
 PlayerClass::PlayerClass()
@@ -11,6 +11,7 @@ PlayerClass::PlayerClass()
     FramesSpeed = 8;
     CurrentFrame = 0;
     FrameRec = { 0.0f, 0.0f, 0.0f, 0.0f };
+    State = PlayerState::IDLE;
 }
 
 void PlayerClass::Update()
@@ -32,10 +33,23 @@ void PlayerClass::Update()
     if (IsKeyDown(KEY_RIGHT))
     {
         Position.x += Speed;
+        State = RUN; 
     }
     else if (IsKeyDown(KEY_LEFT))
     {
         Position.x -= Speed;
+        State = RUN;
+    }
+    else State = IDLE;
+
+    switch (State)
+    {
+        case IDLE:
+            FramesSpeed = 4;
+            break;
+        case RUN:
+            FramesSpeed = 8;
+            break;
     }
 
     ScaledPosition = 
@@ -56,9 +70,9 @@ void PlayerClass::Draw()
     );
 }
 
-void PlayerClass::SetTexture(Texture2D texture)
+void PlayerClass::SetTexture(const Texture2D* texture)
 {
-    PlayerTexture = texture;
+    PlayerTexture = *texture;
     FrameRec = { 0.0f, 0.0f, (float)PlayerTexture.width / 6, (float)PlayerTexture.height };
 
     NewWidth = FrameRec.width * Scale;
