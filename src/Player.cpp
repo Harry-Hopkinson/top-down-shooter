@@ -8,7 +8,7 @@ PlayerClass::PlayerClass()
     Position = { 350.0f, 280.0f };
     Speed = 5.0f;
     FramesCounter = 0;
-    FramesSpeed = 8;
+    FramesSpeed = 10;
     CurrentFrame = 0;
     FrameRec = { 0.0f, 0.0f, 0.0f, 0.0f };
     State = PlayerState::IDLE;
@@ -24,7 +24,7 @@ void PlayerClass::Update()
         CurrentFrame++;
 
         if (CurrentFrame > 5) CurrentFrame = 0;
-        FrameRec.x = (float)CurrentFrame * (float)PlayerTexture.width / 6;
+        FrameRec.x = (float)CurrentFrame * (float)PlayerTexture.width / 5;
     }
 
     if (FramesSpeed > MAX_FRAME_SPEED) FramesSpeed = MAX_FRAME_SPEED;
@@ -41,16 +41,6 @@ void PlayerClass::Update()
         State = RUN;
     }
     else State = IDLE;
-
-    switch (State)
-    {
-        case IDLE:
-            FramesSpeed = 4;
-            break;
-        case RUN:
-            FramesSpeed = 8;
-            break;
-    }
 
     ScaledPosition = 
     { Position.x - (NewWidth - FrameRec.width ) / 2,
@@ -73,7 +63,7 @@ void PlayerClass::Draw()
 void PlayerClass::SetTexture(const Texture2D* texture)
 {
     PlayerTexture = *texture;
-    FrameRec = { 0.0f, 0.0f, (float)PlayerTexture.width / 6, (float)PlayerTexture.height };
+    FrameRec = { 0.0f, 0.0f, (float)PlayerTexture.width / 5, (float)PlayerTexture.height };
 
     NewWidth = FrameRec.width * Scale;
     NewHeight = FrameRec.height * Scale;
