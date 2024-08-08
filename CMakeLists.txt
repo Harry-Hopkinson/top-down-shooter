@@ -18,6 +18,17 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(raylib)
 
+# Path to Raylib header after fetching
+set(RAYLIB_HEADER_PATH "${raylib_SOURCE_DIR}/src/raylib.h")
+
+# Define the destination path where the header should be copied
+set(DESTINATION_PATH "${CMAKE_CURRENT_SOURCE_DIR}/src/raylib.h")
+
+# Copy the raylib.h file to the src directory if it doesn't already exist there
+if(NOT EXISTS ${DESTINATION_PATH})
+    file(COPY ${RAYLIB_HEADER_PATH} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/src/)
+endif()
+
 # Adding our source files
 file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_LIST_DIR}/src/*.cpp")
 set(PROJECT_INCLUDE "${CMAKE_CURRENT_LIST_DIR}/src/") # Define PROJECT_INCLUDE to be the path to the include directory of the project
